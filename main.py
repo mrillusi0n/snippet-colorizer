@@ -16,7 +16,17 @@ def export_css(dest, json_scheme):
     with open(dest, 'w') as export_file:
         export_file.write(make_root(json_scheme))
 
+def render(dest, template, snippet):
+    with open(template) as template:
+        html = template.read().format(snippet)
+
+    with open(dest, 'w') as html_file:
+        html_file.write(html)
+
 
 print(make_root(load_colors('colors/everforest.json')))
 export_css('css/scheme.css', load_colors('colors/everforest.json'))
+
+with open('code.py') as snippet_file:
+    render('index.html', 'template.html', snippet_file.read().strip())
 
