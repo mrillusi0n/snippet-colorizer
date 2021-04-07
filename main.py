@@ -24,12 +24,12 @@ def render(dest, template, snippet):
         html_file.write(html)
 
 def main():
-	print(make_root(load_colors('colors/everforest.json')))
-	export_css('css/scheme.css', load_colors('colors/everforest.json'))
+    print(make_root(load_colors('colors/everforest.json')))
+    export_css('css/scheme.css', load_colors('colors/everforest.json'))
 
-	with open('code.py') as snippet_file:
-		render('index.html', 'template.html', snippet_file.read().strip())
+    with open('code.py') as snippet_file:
+        render('index.html', 'template.html', snippet_file.read().strip())
 
 
 if __name__ == '__main__':
-	main()
+    main()
