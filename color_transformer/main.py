@@ -4,7 +4,7 @@ import colorsys
 from operator import mul
 
 def hex_to_rgbf(hex_color):
-    return tuple(int(x) / 255 for x in bytes.fromhex(hex_color))
+    return tuple(int(x) / 255 for x in bytes.fromhex(hex_color[1:]))
 
 def rgb_to_hex(rgb_values):
     return hex(int.from_bytes(bytes(rgb_values), byteorder='big'))[2:]
