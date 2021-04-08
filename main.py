@@ -1,7 +1,11 @@
 ##############################################################
 
+import os
 import json
+
 from itertools import starmap
+
+from color_transformer import darken
 
 def load_colors(colorscheme_file):
     with open(colorscheme_file) as scheme:
@@ -12,23 +16,26 @@ def make_root(json_scheme):
         ';'.join(starmap('--{}:{}'.format, json_scheme.items()))
     )
 
-def export_css(dest, json_scheme):
-    with open(dest, 'w') as export_file:
+def export_css(json_scheme):
+    with open(os.path.join(EXPORT_PATH, 'scheme.css'), 'w') as export_file:
         export_file.write(make_root(json_scheme))
 
-def render(dest, template, snippet):
-    with open(template) as template:
-        html = template.read().format(snippet)
+def render(scheme, snippet):
+    colors = load_colors(scheme)
+    export_css(colors)
 
-    with open(dest, 'w') as html_file:
+    with open(TEMPLATE) as template:
+        html = template.read().format(snippet=snippet, bg_color=darken(colors['bg'], 20))
+
+    with open(os.path.join(EXPORT_PATH, 'index.html'), 'w') as html_file:
         html_file.write(html)
 
-def main():
-    print(make_root(load_colors('colors/everforest.json')))
-    export_css('css/scheme.css', load_colors('colors/everforest.json'))
+EXPORT_PATH = 'render'
+TEMPLATE = 'template.html'
 
+def main():
     with open('code.py') as snippet_file:
-        render('index.html', 'template.html', snippet_file.read().strip())
+        render('colors/everforest.json', snippet_file.read().strip())
 
 
 if __name__ == '__main__':
