@@ -1,9 +1,10 @@
 body {
-  background: var(--bg);
   color: var(--fg);
 }
 
 .code-canvas {
   background: var(--bg);
   font-size: 1.8rem;
+  padding: 1.6rem 2rem;
+  border-radius: .5rem;
 }
