@@ -1,5 +1,9 @@
-# Ignore VS Code settings
+# vs code settings
 .vscode/
 
-# Ignore rendered files
+# rendered files
 render/
+
+# python specific
+*.pyc
+__pycache__/
