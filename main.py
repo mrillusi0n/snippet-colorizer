@@ -2,9 +2,9 @@
 
 import os
 import json
+import sys
 
 from itertools import starmap
-
 from color_transformer import darken
 
 def load_colors(colorscheme_file):
@@ -33,9 +33,14 @@ def render(scheme, snippet):
 EXPORT_PATH = 'render'
 TEMPLATE = 'template.html'
 
+try:
+    SCHEME = sys.argv[1]
+except:
+    SCHEME = 'colors/ayu_mirage.json'
+
 def main():
     with open('code.py') as snippet_file:
-        render('colors/everforest.json', snippet_file.read().strip())
+        render(SCHEME, snippet_file.read().strip())
 
 
 if __name__ == '__main__':
