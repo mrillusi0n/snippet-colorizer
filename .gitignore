@@ -2,7 +2,8 @@
 .vscode/
 
 # rendered files
-render/
+render/index.html
+render/css/scheme.css
 
 # python specific
 *.pyc
