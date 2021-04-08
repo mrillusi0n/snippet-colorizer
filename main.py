@@ -17,7 +17,7 @@ def make_root(json_scheme):
     )
 
 def export_css(json_scheme):
-    with open(os.path.join(EXPORT_PATH, 'scheme.css'), 'w') as export_file:
+    with open(os.path.join(EXPORT_PATH, 'css/scheme.css'), 'w') as export_file:
         export_file.write(make_root(json_scheme))
 
 def render(scheme, snippet):
